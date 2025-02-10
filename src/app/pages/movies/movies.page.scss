@@ -1,0 +1,6 @@
+ion-list {
+    flex-grow: 1;
+    overflow-y: auto;
+    min-height: 100vh;  /* Esto asegura que el contenedor siempre sea lo suficientemente alto */
+  }
+  

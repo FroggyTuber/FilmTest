@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 export interface ApiResult {
@@ -18,10 +18,19 @@ export class MovieService {
   constructor(private http:HttpClient) { }
 
   getMovies(page: number): Observable<ApiResult> {
-    return this.http.get<ApiResult>(`${environment.baseUrl}/discover/movie?api_key=${environment.apiKey}&page=${page}`);
+    const params = new HttpParams().set('api_key', environment.apiKey).set('page', page.toString());
+    return this.http.get<ApiResult>(`${environment.baseUrl}/discover/movie`, { params });
   }
 
-  getMovieDetails(id: string) {
-    return this.http.get(`${environment.baseUrl}/movie/${id}?api_key=${environment.apiKey}`);
+  getMovieDetails(id: string): Observable<any> {
+    const params = new HttpParams().set('api_key', environment.apiKey);
+    
+    return this.http.get<any>(`${environment.baseUrl}/movie/${id}`, { params });
+  }
+
+  searchMovies(query: string): Observable<ApiResult> {
+    const params = new HttpParams().set('api_key', environment.apiKey).set('query', query);
+
+    return this.http.get<ApiResult>(`${environment.baseUrl}/search/movie`, { params });
   }
 }

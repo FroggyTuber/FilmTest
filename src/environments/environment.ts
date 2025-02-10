@@ -2,6 +2,8 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+import { search } from "ionicons/icons";
+
 export const environment = {
   production: false,
   apiKey: 'b9184b5ec517ab64c1f90721eb68b981',

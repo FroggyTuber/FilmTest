@@ -1,0 +1,32 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title> {{ movie?.title }}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/movies"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngIf="movie">
+    <div class="image-container">
+      <ion-img [src]= "movie.poster_path | image" alt="movie poster"></ion-img>
+    </div>
+    <ion-card-header>
+      <ion-card-title> {{ movie.title }}</ion-card-title>
+      <ion-text color="secondary">
+        <span *ngFor="let genre of movie.genres; let isLast = last">
+          {{ genre.name }} {{ isLast ? '' : ' - ' }}
+        </span>
+      </ion-text>
+      <ion-text color="medium"> 
+        <p> Release date: {{ movie.release_date }} </p>
+        <p> Language: {{movie.original_language | language}} </p>
+      </ion-text>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-label color="medium"> {{ movie.overview }} </ion-label>      
+    </ion-card-content>
+  </ion-card>
+</ion-content>

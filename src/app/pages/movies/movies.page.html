@@ -1,0 +1,33 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>Movies</ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar [debounce]="1000" (ionChange)="searchMovies($event)"
+      animated="true" placeholder="Search movies" showCancelButton="focus"
+    ></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-item button *ngFor="let movie of (searchedMovies.length > 0 ? searchedMovies : movies); trackBy:trackById"  [routerLink]="[movie.id]">
+      <ion-label>
+        {{ movie.title }}
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMore($event)" *ngIf="!searchedMovies.length">
+    <ion-infinite-scroll-content 
+      loadingSpinner="crescent" 
+      loadingText="Loading movies...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="scrollToTop()">
+      <ion-icon name="arrow-up-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
