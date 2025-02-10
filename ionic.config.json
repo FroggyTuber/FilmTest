@@ -1,5 +1,7 @@
 {
   "name": "FilmTest",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular-standalone"
 }

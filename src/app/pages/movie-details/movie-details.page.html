@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true">
   <ion-card *ngIf="movie">
     <div class="image-container">
       <ion-img [src]= "movie.poster_path | image" alt="movie poster"></ion-img>
