@@ -3,7 +3,7 @@
     <ion-title>Movies</ion-title>
   </ion-toolbar>
   <ion-toolbar>
-    <ion-searchbar [debounce]="1000" (ionChange)="searchMovies($event)"
+    <ion-searchbar [debounce]="500" (ionInput)="searchMovies($event)"
       animated="true" placeholder="Search movies" showCancelButton="focus"
     ></ion-searchbar>
   </ion-toolbar>
